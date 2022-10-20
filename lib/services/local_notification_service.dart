@@ -14,18 +14,23 @@ class NotificationService {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@drawable/ic_stat_emoji_emotions');
 
-    final DarwinInitializationSettings initializationSettingsIOS =
-        DarwinInitializationSettings(
-            requestSoundPermission: true,
-            requestBadgePermission: true,
-            requestAlertPermission: true,
-            onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    // final DarwinInitializationSettings initializationSettingsIOS =
+    //     DarwinInitializationSettings(
+    //         requestSoundPermission: true,
+    //         requestBadgePermission: true,
+    //         requestAlertPermission: true,
+    //         onDidReceiveLocalNotification: onDidReceiveLocalNotification);
 
     final InitializationSettings initializationSettings =
         InitializationSettings(
       android: initializationSettingsAndroid,
-      iOS: initializationSettingsIOS,
     );
+
+    //   final InitializationSettings initializationSettings =
+    //     InitializationSettings(
+    //   android: initializationSettingsAndroid,
+    //   iOS: initializationSettingsIOS,
+    // );
 
     await _localNotifications.initialize(initializationSettings,
         onDidReceiveNotificationResponse: selectNotification);
@@ -39,11 +44,12 @@ class NotificationService {
             priority: Priority.max,
             playSound: true);
 
-    const DarwinNotificationDetails iosNotificationDetails =
-        DarwinNotificationDetails();
+    // const DarwinNotificationDetails iosNotificationDetails =
+    //     DarwinNotificationDetails();
 
-    return const NotificationDetails(
-        android: androidnotificationdetails, iOS: iosNotificationDetails);
+    // return const NotificationDetails(
+    //     android: androidnotificationdetails, iOS: iosNotificationDetails);
+    return const NotificationDetails(android: androidnotificationdetails);
   }
 
   Future<void> showNotification(
@@ -79,10 +85,10 @@ class NotificationService {
     await _localNotifications.show(id, title, body, details, payload: payload);
   }
 
-  void onDidReceiveLocalNotification(
-      int id, String? title, String? body, String? payload) {
-    print('id $id');
-  }
+  // void onDidReceiveLocalNotification(
+  //     int id, String? title, String? body, String? payload) {
+  //   print('id $id');
+  // }
 
   void selectNotification(NotificationResponse notificationResponse) {
     if (notificationResponse.notificationResponseType ==
