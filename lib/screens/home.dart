@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lect10_sample/services/local_notification_service.dart';
+import 'SecondScreen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,6 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late final NotificationService service;
 
+  @override
   void initState() {
     service = NotificationService();
     service.initializePlatformNotifications();
@@ -72,30 +74,5 @@ class _HomeState extends State<Home> {
           MaterialPageRoute(
               builder: ((context) => SecondScreen(payload: payload))));
     }
-  }
-}
-
-class SecondScreen extends StatelessWidget {
-  const SecondScreen({
-    Key? key,
-    required this.payload,
-  }) : super(key: key);
-
-  final String payload;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Screen'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          payload,
-          style: const TextStyle(fontSize: 30),
-        ),
-      ),
-    );
   }
 }
